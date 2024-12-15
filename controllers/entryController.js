@@ -15,9 +15,18 @@ const getAllEntries = async(req, res) => {
     }
 }
 
-const getSingleEntry = async((req, res)=>{
-    
-})
+const getSingleEntry = async (req, res) => {
+    const {_id} = req.query
+    try{
+        const singleEntry = await Entry.findOne({_id})
+		if(!singleEntry){
+			return res.status(404).json({success: false, message: 'Entry is not find'})
+		}
+		res.status(200).json({success: true, message: 'Entry ', data: singleEntry})
+    }catch(e){
+        console.log(e)
+    }
+}
 
 const getSearchEntry = async((req, res)=>{
     
