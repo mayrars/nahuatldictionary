@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require('cors');
+const dictionaryRouter = require("./routes/dictionaryRouter");
 const mongose = require('mongoose');
 
 
@@ -14,7 +15,7 @@ mongose.connect(process.env.MONGO_URI).then(() => {
 }).catch((err) => {
     console.log(err)
 })
-
+app.use("/api/v1/dictionary", dictionaryRouter);
 app.listen(PORT), () => {
     console.log('listen...')
 }
