@@ -1,0 +1,15 @@
+### GEt all entries
+GET http://localhost:8000/api/v1/dictionary/ HTTP/1.1
+Content-Type: application/json
+
+###
+POST http://localhost:8000/api/v1/dictionary/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "word":""
+}
+
+###
+GET http://localhost:8000/api/v1/dictionary/single-entry?_id=674ef127912f532ff894d25a HTTP/1.1
+Content-Type: application/json
