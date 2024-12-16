@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require('cors');
-const dictionaryRouter = require("./routes/dictionaryRouter");
+const dictionaryRouter = require("./routes/entryRouter");
 const mongose = require('mongoose');
 
 
