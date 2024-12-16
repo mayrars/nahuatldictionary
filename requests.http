@@ -3,13 +3,27 @@ GET http://localhost:8000/api/v1/dictionary/ HTTP/1.1
 Content-Type: application/json
 
 ###
-POST http://localhost:8000/api/v1/dictionary/ HTTP/1.1
+POST http://localhost:8000/api/v1/dictionary/create-entry HTTP/1.1
 Content-Type: application/json
 
 {
-    "word":""
+    "word": "Ome",
+    "pronunciation": [
+        { 
+            "audio": "http://example.com", 
+            "sourceUrl": "http://example.com" 
+        }
+    ],
+    "meanings": [
+        {
+            "definitions": [
+                "ome"
+            ],
+            "example": "xinechmaka ome"
+        }
+    ]
 }
 
 ###
-GET http://localhost:8000/api/v1/dictionary/single-entry?_id=674ef127912f532ff894d25a HTTP/1.1
+GET http://localhost:8000/api/v1/dictionary/single-entry?_id=67601331c91fbe9bf31f75ee HTTP/1.1
 Content-Type: application/json
