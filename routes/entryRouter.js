@@ -1,13 +1,13 @@
 const express = require("express")
-const router = express.Router()
 const entryController = require("../controllers/entryController")
+const router = express.Router()
 router
     .get('/',entryController.getAllEntries)
     .get('/single-entry',entryController.getSingleEntry)
-    .get('/search',entryController.getSearchEntry)
     .post('/create-entry', entryController.createEntry)
-    .put('/update-entry', entryController.updateEntry)
-    .delete('/delete-entry',entryController.deleteEntry)
+    //.get('/search',entryController.getSearchEntry)
+    //.put('/update-entry', entryController.updateEntry)
+    //.delete('/delete-entry',entryController.deleteEntry)
 
 
 module.exports = router
