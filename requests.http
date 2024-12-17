@@ -27,3 +27,8 @@ Content-Type: application/json
 ###
 GET http://localhost:8000/api/v1/dictionary/single-entry?_id=67601331c91fbe9bf31f75ee HTTP/1.1
 Content-Type: application/json
+
+
+###
+DELETE http://localhost:8000/api/v1/dictionary/delete-entry?_id=676011cac91fbe9bf31f75e4 HTTP/1.1
+Content-Type: application/json

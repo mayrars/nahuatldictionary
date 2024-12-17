@@ -51,20 +51,31 @@ const createEntry = async(req, res)=>{
 	}
 }
 
+const deleteEntry = async(req, res)=>{
+    const {_id} = req.query
+    try {
+		const existsEntry = await Entry.findOne({ _id });
+		if(!existsEntry){
+			return res.status(404).json({success: false, message: 'Entry are not find'})
+		}
+		await Entry.deleteOne({_id})
+		res.status(200).json({ success: true, message: 'Entry deleted' });
+	} catch (error) {
+		console.log(error);
+	}
+}
 /*
 const getSearchEntry = async(req, res)=>{
     
 }
 const updateEntry = async(req, res)=>{
     
-}
-
-const deleteEntry = async(req, res)=>{
-    
 }*/
+
 
 module.exports = {
     getAllEntries,
     getSingleEntry,
-    createEntry
+    createEntry,
+    deleteEntry
 }

@@ -5,9 +5,9 @@ router
     .get('/',entryController.getAllEntries)
     .get('/single-entry',entryController.getSingleEntry)
     .post('/create-entry', entryController.createEntry)
+    .delete('/delete-entry',entryController.deleteEntry)
     //.get('/search',entryController.getSearchEntry)
     //.put('/update-entry', entryController.updateEntry)
-    //.delete('/delete-entry',entryController.deleteEntry)
 
 
 module.exports = router
