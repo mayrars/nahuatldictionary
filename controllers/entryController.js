@@ -64,11 +64,34 @@ const deleteEntry = async(req, res)=>{
 		console.log(error);
 	}
 }
+const updateEntry = async(req, res)=>{
+    const { word, pronunciation, meanings } = req.body;
+    const {_id} = req.query
+    try{
+        const {error, value} = updateEntrySchema.validate({
+            word, pronunciation, meanings
+        })
+        if(error){
+            return res.status(401).json({success: false, message: error.details[0].message})
+        }
+        //verify if exists
+        const existsEntry = await Entry.findOne({ _id });
+        if(!existsEntry){
+			return res.status(404).json({success: false, message: 'entry unavailable'})
+		}
+        existsEntry.word = word;
+		existsEntry.pronunciation = pronunciation;
+		existsEntry.meanings = meanings;
+		const result = await existsEntry.save();
+        res.status(200).json({ success: true, message: 'Entry Updated', data: result });
+    }catch (error) {
+		console.log(error);
+	}
+}
+
+
 /*
 const getSearchEntry = async(req, res)=>{
-    
-}
-const updateEntry = async(req, res)=>{
     
 }*/
 
@@ -77,5 +100,6 @@ module.exports = {
     getAllEntries,
     getSingleEntry,
     createEntry,
-    deleteEntry
+    deleteEntry,
+    updateEntry
 }
