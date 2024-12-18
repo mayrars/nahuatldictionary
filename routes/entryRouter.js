@@ -6,8 +6,8 @@ router
     .get('/single-entry',entryController.getSingleEntry)
     .post('/create-entry', entryController.createEntry)
     .delete('/delete-entry',entryController.deleteEntry)
+    .put('/update-entry', entryController.updateEntry)
     //.get('/search',entryController.getSearchEntry)
-    //.put('/update-entry', entryController.updateEntry)
 
 
 module.exports = router
