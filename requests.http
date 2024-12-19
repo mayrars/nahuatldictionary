@@ -32,3 +32,25 @@ Content-Type: application/json
 ###
 DELETE http://localhost:8000/api/v1/dictionary/delete-entry?_id=676011cac91fbe9bf31f75e4 HTTP/1.1
 Content-Type: application/json
+
+###
+PUT http://localhost:8000/api/v1/dictionary/update-entry?_id=676012c8c91fbe9bf31f75e9 HTTP/1.1
+Content-Type: application/json
+
+{
+    "word": "Ome",
+    "pronunciation": [
+        { 
+            "audio": "http://exampledos.com", 
+            "sourceUrl": "http://exampledos.com" 
+        }
+    ],
+    "meanings": [
+        {
+            "definitions": [
+                "ome"
+            ],
+            "example": "xinechmaka ome"
+        }
+    ]
+}

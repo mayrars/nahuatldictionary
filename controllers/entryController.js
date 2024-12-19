@@ -1,5 +1,5 @@
 const Entry = require('../models/entryModel')
-const { createEntrySchema } = require('../middlewares/validator');
+const { createEntrySchema,updateEntrySchema } = require('../middlewares/validator');
 const getAllEntries = async(req, res) => {
     const {page} = req.query
     const entryPerPage = 10
@@ -89,11 +89,42 @@ const updateEntry = async(req, res)=>{
 	}
 }
 
-
-/*
 const getSearchEntry = async(req, res)=>{
-    
-}*/
+    try{
+        const query = req.query.q || '';
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+
+        const filter = {
+            word: req.query.word,
+            pronunciation: req.query.pronunciation,
+            meanings: req.query.meanings
+        }
+        const searchData = {}
+        if(query){
+            searchData.$text = {$search: query}
+        }
+        if(filter.word) searchData.word = {$regex: filter.word, $options: 'i'};
+        if(filter.pronunciation) searchData.pronunciation = {$regex: filter.pronunciation};
+        if(filter.meanings) searchData.meanings = {$regex: filter.meanings};
+        const entry = await Entry.find(searchData)
+            .sort({ createdAt: -1 })
+            .skip((page - 1) * limit)
+            .limit(limit)
+        const totalEntries = await Entry.countDocuments(searchData);
+        res.status(200).json({
+            success: true,
+            message: 'Entries found',
+            data: entry,
+            total: totalEntries,
+            page,
+            limit
+        })
+
+    }catch(error){
+        console.log(error)
+    }
+}
 
 
 module.exports = {
@@ -101,5 +132,6 @@ module.exports = {
     getSingleEntry,
     createEntry,
     deleteEntry,
-    updateEntry
+    updateEntry,
+    getSearchEntry
 }

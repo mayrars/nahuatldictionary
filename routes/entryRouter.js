@@ -7,7 +7,7 @@ router
     .post('/create-entry', entryController.createEntry)
     .delete('/delete-entry',entryController.deleteEntry)
     .put('/update-entry', entryController.updateEntry)
-    //.get('/search',entryController.getSearchEntry)
+    .get('/search',entryController.getSearchEntry)
 
 
 module.exports = router
